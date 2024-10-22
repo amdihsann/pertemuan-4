@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body class="body">
+    <div id="anotherLine">
+      <h1 id="time"></h1>
+      <label>Nama Mahasiswa</label>
+      <input type="text" name="name[]" onchange="upperCase(this)" id="kapsName" />
+      <button onclick="addMore()" id="tambah">Tambah data Mahasiswa</button>
+      <button id="myBtn">submit</button>
+    </div>
+  </body>
+
+  <script>
+     function upperCase(inputElement) {
+      inputElement.value = inputElement.value.toUpperCase();
+    }
+
+    function addMore() {
+      var objDiv = document.getElementById("anotherLine");
+      console.log(objDiv);
+
+      var newId = 'kapsName' + (objDiv.children.length + 1)
+
+      var divCreate = document.createElement("div");
+      divCreate.innerHTML = `
+        <label>Nama Mahasiswa </label>
+        <input type="text" name= "name[]" onchange="upperCase(this)" id="${newId}">`;
+
+      objDiv.appendChild(divCreate);
+    }
+
+    document.getElementById("myBtn").addEventListener("click", function () {
+      alert("Selamat data telah berhasil disimpan");
+    });
+
+    let time = document.getElementById("time")
+
+    setInterval(() =>{
+      let d = new Date();
+      time.innerHTML = d.toLocaleTimeString(); 
+    },1000)
+  </script>
+</html>
